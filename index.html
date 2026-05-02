@@ -1042,8 +1042,7 @@
         <div class="hero-image-container">
             <div class="hero-image-frame">
                 <div class="hero-image-inner">
-                    <!-- Add your photo here: <img src="your-photo.jpg" alt="Kamakshi"> -->
-                    <span>[ add photo<br>here ]</span>
+                    <img src="image/profile.jpeg" alt="Kamakshi">
                 </div>
             </div>
         </div>
@@ -1239,9 +1238,12 @@
             </div>
 
             <form class="contact-form" id="contactForm">
-                <input type="text" class="form-input" placeholder="name" required>
-                <input type="email" class="form-input" placeholder="email" required>
-                <textarea class="form-input" rows="5" placeholder="message" required></textarea>
+                <input type="hidden" name="_subject" value="New Message from Portfolio">
+                <input type="hidden" name="_captcha" value="false">
+                
+                <input type="text" name="name" class="form-input" placeholder="name" required>
+                <input type="email" name="email" class="form-input" placeholder="email" required>
+                <textarea name="message" class="form-input" rows="5" placeholder="message" required></textarea>
                 <button type="submit" class="form-submit">send it →</button>
                 <div class="form-success" id="formSuccess">message received. i'll be in touch.</div>
             </form>
@@ -1432,13 +1434,45 @@
             if (e.key === 'Escape') closeCert();
         });
 
-        // Form Submit
+        // Form Submit with FormSubmit
         document.getElementById('contactForm').addEventListener('submit', function (e) {
             e.preventDefault();
-            const success = document.getElementById('formSuccess');
-            success.style.opacity = '1';
-            this.reset();
-            setTimeout(() => { success.style.opacity = '0'; }, 4000);
+            const form = this;
+            const submitBtn = form.querySelector('.form-submit');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'sending...';
+            
+            fetch('https://formsubmit.co/ajax/kamakshi12011@gmail.com', {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: form.name.value,
+                    email: form.email.value,
+                    message: form.message.value,
+                    _subject: 'New Message from Portfolio'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success === "true" || data.success === true) {
+                    const success = document.getElementById('formSuccess');
+                    success.style.opacity = '1';
+                    form.reset();
+                    setTimeout(() => { success.style.opacity = '0'; }, 4000);
+                } else {
+                    alert('There was an issue sending your message. Please try again later.');
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                alert('Something went wrong!');
+            })
+            .finally(() => {
+                submitBtn.textContent = originalText;
+            });
         });
     </script>
 </body>
