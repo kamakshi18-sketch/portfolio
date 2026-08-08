@@ -14,14 +14,15 @@
 
     <style>
         :root {
-            --bg: #000000;
-            --bg-gradient: radial-gradient(circle at center 20%, #081510 0%, #000000 70%);
-            --mint: #a8f0c6;
-            --mint-dim: rgba(168, 240, 198, 0.3);
-            --text-main: #ffffff;
-            --text-muted: #aaaaaa;
-            --text-dark: #333333;
-            --text-mid: #777777;
+            --bg: #ffffff;
+            --bg-gradient: radial-gradient(circle at center 20%, #f5f3ff 0%, #ffffff 80%);
+            --mint: #7C3AED;
+            --mint-dim: rgba(124, 58, 237, 0.1);
+            --mint-light: #6366F1;
+            --text-main: #111827;
+            --text-muted: #4b5563;
+            --text-dark: #e5e7eb;
+            --text-mid: #9CA3AF;
 
             --font-serif: 'Cormorant Garamond', serif;
             --font-sans: 'Outfit', sans-serif;
@@ -161,8 +162,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(0, 0, 0, 0.9);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
         }
 
@@ -181,7 +183,7 @@
         .nav-links a {
             font-family: var(--font-mono);
             font-size: 12px;
-            color: var(--text-mid);
+            color: var(--text-muted);
             transition: color 0.3s;
             text-transform: lowercase;
         }
@@ -374,11 +376,19 @@
 
         .skill-card {
             flex: 1;
-            border: 1px solid var(--mint);
-            background: #000;
+            border: 1px solid var(--text-dark);
+            background: #ffffff;
             padding: 40px;
             display: flex;
             flex-direction: column;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--mint);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.06);
         }
 
         .skill-card-top {
@@ -411,7 +421,7 @@
         .skill-card-bottom {
             font-family: var(--font-mono);
             font-size: 11px;
-            color: var(--text-dark);
+            color: var(--text-mid);
         }
 
         /* Section 4 - Learning Path */
@@ -429,7 +439,7 @@
             top: 0;
             bottom: 0;
             width: 1px;
-            background: var(--mint-dim);
+            background: var(--text-dark);
         }
 
         .timeline-node {
@@ -452,8 +462,8 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: #000;
-            border: 1px solid var(--text-dark);
+            background: #ffffff;
+            border: 1.5px solid var(--text-mid);
             z-index: 2;
         }
 
@@ -545,16 +555,19 @@
 
         .project-card {
             position: relative;
-            background: #000;
-            border: 1px solid var(--mint);
+            background: #ffffff;
+            border: 1px solid var(--text-dark);
             padding: 2.5rem;
             display: flex;
             flex-direction: column;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
         }
 
         .project-card:hover {
             transform: translateY(-5px);
+            border-color: var(--mint);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.06);
         }
 
         .project-index {
@@ -563,8 +576,8 @@
             right: 1.5rem;
             font-family: var(--font-mono);
             font-size: 24px;
-            color: var(--text-dark);
-            opacity: 0.3;
+            color: var(--text-mid);
+            opacity: 0.2;
         }
 
         .project-title {
@@ -591,11 +604,11 @@
         }
 
         .project-tag {
-            background: #000;
+            background: #f9fafb;
             border: 1px solid var(--text-dark);
             border-radius: 12px;
             font-size: 13px;
-            color: var(--text-mid);
+            color: var(--text-muted);
             padding: 4px 12px;
             font-family: var(--font-sans);
         }
@@ -613,7 +626,7 @@
         }
 
         .project-link:hover {
-            color: var(--text-main);
+            color: var(--mint-light);
         }
 
         .project-card.dimmed {
@@ -640,12 +653,16 @@
             align-items: center;
             border-left: 2px solid var(--mint);
             padding-left: 1.5rem;
-            background: #000;
-            transition: transform 0.3s;
+            background: #ffffff;
+            border: 1px solid var(--text-dark);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
         }
 
         .cert-row:hover {
             transform: translateX(5px);
+            border-color: var(--mint-light);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.06);
         }
 
         .cert-info {
@@ -662,14 +679,14 @@
         .cert-platform {
             font-family: var(--font-mono);
             font-size: 12px;
-            color: var(--text-mid);
+            color: var(--text-muted);
             margin-bottom: 0.3rem;
         }
 
         .cert-date {
             font-family: var(--font-mono);
             font-size: 11px;
-            color: var(--text-dark);
+            color: var(--text-mid);
             margin-bottom: 0.8rem;
         }
 
@@ -682,7 +699,8 @@
         .cert-tag {
             font-family: var(--font-sans);
             font-size: 11px;
-            color: var(--text-mid);
+            color: var(--text-muted);
+            background: #f9fafb;
             border: 1px solid var(--text-dark);
             border-radius: 10px;
             padding: 2px 8px;
@@ -701,7 +719,7 @@
 
         .cert-view:hover {
             transform: translateX(5px);
-            color: var(--text-main);
+            color: var(--mint-light);
         }
 
         /* Modal */
@@ -711,7 +729,8 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.92);
+            background: rgba(17, 24, 39, 0.5);
+            backdrop-filter: blur(8px);
             z-index: 1000;
             display: flex;
             justify-content: center;
@@ -727,7 +746,7 @@
         }
 
         .modal-box {
-            background: #000;
+            background: #ffffff;
             border: 1px solid var(--mint);
             border-radius: 4px;
             padding: 60px;
@@ -735,6 +754,7 @@
             max-width: 800px;
             width: 90%;
             position: relative;
+            box-shadow: 0 20px 50px rgba(124, 58, 237, 0.1);
         }
 
         .modal-inner-frame {
@@ -784,7 +804,7 @@
         }
 
         .modal-close:hover {
-            color: var(--text-main);
+            color: var(--mint-light);
         }
 
         /* Section 7 - Contact */
@@ -842,9 +862,9 @@
         }
 
         .form-input {
-            background: #000;
+            background: transparent;
             border: none;
-            border-bottom: 1px solid #222;
+            border-bottom: 1px solid #e2e8f0;
             border-radius: 0;
             padding: 0.8rem 0;
             color: var(--text-main);
@@ -889,9 +909,11 @@
 
         /* Footer */
         footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 40px 5%;
-            margin-top: 4rem;
+            background: #f9fafb;
+            border-top: 1px solid var(--text-dark);
+            padding: 60px 5% 40px;
+            margin-top: 6rem;
+            color: var(--text-muted);
         }
 
         .footer-content {
@@ -918,7 +940,7 @@
         }
 
         .footer-links a {
-            color: var(--text-mid);
+            color: var(--text-muted);
             transition: color 0.3s;
         }
 
@@ -929,7 +951,7 @@
         .footer-copy {
             font-family: var(--font-mono);
             font-size: 11px;
-            color: var(--text-mid);
+            color: var(--text-muted);
             text-align: right;
         }
 
@@ -941,11 +963,11 @@
                 top: 100%;
                 left: 0;
                 width: 100%;
-                background: #000;
+                background: #ffffff;
                 flex-direction: column;
                 padding: 2rem;
                 text-align: center;
-                border-bottom: 1px solid #222;
+                border-bottom: 1px solid var(--text-dark);
             }
 
             .nav-links.show {
